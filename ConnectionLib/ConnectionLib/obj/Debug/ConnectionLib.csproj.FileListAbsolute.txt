@@ -1,0 +1,5 @@
+C:\src\ConnectionLib\ConnectionLib\bin\Debug\ConnectionLib.dll
+C:\src\ConnectionLib\ConnectionLib\bin\Debug\ConnectionLib.pdb
+C:\src\ConnectionLib\ConnectionLib\obj\Debug\ConnectionLib.dll
+C:\src\ConnectionLib\ConnectionLib\obj\Debug\ConnectionLib.pdb
+C:\src\ConnectionLib\ConnectionLib\obj\Debug\ConnectionLib.csprojResolveAssemblyReference.cache

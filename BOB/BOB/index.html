@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>信用卡服務API</title>
+    <script src="Scripts/jquery-1.8.2.js"></script>
+    <!--UI Operation-->
+    <script type="text/javascript">
+        var input = "<input id='<id>' value='' style='width:80%' />";
+        jQuery(document).ready(function ($) {
+            $(".divSH").hide();
+            $("#ddlAPI").change(function () {
+                $(".divSH").hide();
+                $("#myframe").html("");
+                if ($(this).val() == '') return;
+                $("#" + $(this).val()).show();
+            });
+        });
+    </script>
+
+    <!--Get operation function-->
+    <script>
+        // Get outcome category information
+        function getOutcomeCategory() {
+            $.post("api/Outcome/Category", function (data) {
+                $.each(data.Result, function (key, value) {
+                    $('.ddlOutcomeCategory').append('<option value=' + value.OutcomeCategoryID + '>' + value.CategoryName + '</option>');
+                });
+            });
+        }
+
+        // Get coin box organization information
+        function getCoinBoxOrganization() {
+            $.post("api/CoinBox/Organization", function (data) {
+                $.each(data.Result, function (key, value) {
+                    $('.ddlCoinBoxOrganization').append('<option value=' + value.CoinBoxOrganizationID + '>' + value.OrganizationName + '</option>');
+                });
+            });
+        }
+
+        // Get coin box category information
+        function getCoinBoxCategory() {
+            $.post("api/CoinBox/Category", function (data) {
+                $.each(data.Result, function (key, value) {
+                    $('.ddlCoinBoxCategory').append('<option value=' + value.CoinBoxCategoryID + '>' + value.CategoryName + '</option>');
+                });
+            });
+        }
+    </script>
+</head>
+<body>  
+    <h1>Version：V1.0.0</h1>
+    文件下載：<a href="file.doc">Sampel</a>
+    <input type="button" value="顯示/隱藏歷史API" onclick="if ($('#histore_API_doc').is(':hidden')) $('#histore_API_doc').show(); else $('#histore_API_doc').hide();" />
+    <div id="histore_API_doc" style="display: none;">
+    </div>
+    <br />    
+    請選擇API：
+    <select id="ddlAPI">
+        <option value="">請選擇</option>
+        <option value="Get-Income-Category">API(1) Get income gategory</option>
+        <option value="Get-Outcome-Category">API(2) Get outcome gategory</option>
+        <option value="Get-Coin-Box-Category">API(3) Get coin box gategory</option>
+        <option value="Get-Coin-Box-Organization">API(4) Get coin box organization</option>
+        <option value="Add-Outcome-Info">API(5) Add outcome information</option>
+    </select>
+    <br />
+
+    <!--API(1) Get income category-->
+    <div id="Get-Income-Category" class="divSH" style="display: none;">
+        <div style="background-color: orange">
+            <span style="background-color: red; color: white">□測試內容：</span><span style="color: red">(*)=必填</span>
+            <br />
+            <form method="post" action="api/Income/Category" target="myframe">
+                <input type="submit" value="送出" />
+            </form>
+        </div>
+    </div>
+
+    <!--API(2) Get outcome category-->
+    <div id="Get-Outcome-Category" class="divSH" style="display: none;">
+        <div style="background-color: orange">
+            <span style="background-color: red; color: white">□測試內容：</span><span style="color: red">(*)=必填</span>
+            <br />
+            <form method="post" action="api/Outcome/Category" target="myframe">
+                <input type="submit" value="送出" />
+            </form>
+        </div>
+    </div>
+
+    <!--API(3) Get coin box category-->
+    <div id="Get-Coin-Box-Category" class="divSH" style="display: none;">
+        <div style="background-color: orange">
+            <span style="background-color: red; color: white">□測試內容：</span><span style="color: red">(*)=必填</span>
+            <br />
+            <form method="post" action="api/CoinBox/Category" target="myframe">
+                <input type="submit" value="送出" />
+            </form>
+        </div>
+    </div>
+
+    <!--API(4) Get Organization-->
+    <div id="Get-Coin-Box-Organization" class="divSH" style="display: none;">
+        <div style="background-color: orange">
+            <span style="background-color: red; color: white">□測試內容：</span><span style="color: red">(*)=必填</span>
+            <br />
+            <form method="post" action="api/CoinBox/Organization" target="myframe">
+                <input type="submit" value="送出" />
+            </form>
+        </div>
+    </div>
+
+    <!--API(5) Add outcome information-->
+    <div id="Add-Outcome-Info" class="divSH" style="display: none;">
+        <div style="background-color: orange">
+            <span style="background-color: red; color: white">□測試內容：</span><span style="color: red">(*)=必填</span>
+            <br />
+            <form method="post" action="api/CoinBox/Organization" target="myframe">
+                帳號編號<span style="color: red">(*)</span>：<input name='CUSTTEL1' value='' style='width: 75%' /><br />
+                店家名稱<span style="color: red">(*)</span>：<input name='CUSTTEL1' value='' style='width: 75%' /><br />
+                機構型別<span style="color: red">(*)</span>：<select class="ddlCoinBoxOrganization"></select><br />
+                口袋型別<span style="color: red">(*)</span>：<select class="ddlCoinBoxCategory"></select><br />
+                消費類別<span style="color: red">(*)</span>：<select class="ddlOutcomeCategory"></select><br />
+                金額<span style="color: red">(*)</span>：<input name='CUSTTEL1' value='' style='width: 75%' /><br />
+                購買物品<span style="color: red">(*)</span>：<input name='CUSTTEL1' value='' style='width: 75%' /><br />
+                備註<span style="color: red">(*)</span>：<input name='CUSTTEL1' value='' style='width: 75%' /><br />
+                <input type="submit" value="送出" />
+            </form>
+        </div>
+    </div>
+
+    <div style="background-color: orange">
+        <span style="background-color: red; color: white">□回傳結果：</span><br>
+        <iframe id="myframe" name="myframe" style="width: 100%; height: 500px;"></iframe>
+    </div>
+
+
+    <script>
+        // Get outcome category information
+        getOutcomeCategory();
+        // Get coin box organization information
+        getCoinBoxOrganization();
+        // Get coin box category information
+        getCoinBoxCategory();
+    </script>
+</body>
+</html>
