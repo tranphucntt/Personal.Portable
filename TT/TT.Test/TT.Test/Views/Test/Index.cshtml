@@ -1,0 +1,19 @@
+﻿@model TT.Test.Models.TestModels
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (Model.data == "show")
+{ 
+    @(Html.BeginForm("Index", "Home", FormMethod.Post))
+    { 
+    <h2>
+        @Html.LabelFor(m => m.data)
+        @Html.TextBoxFor(m => m.data)
+    </h2>
+    <input type="submit" />
+    }
+}
+
+<h2>Index</h2>
